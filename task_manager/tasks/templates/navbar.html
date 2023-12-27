@@ -1,0 +1,42 @@
+<style>
+    /* Customize your styles here */
+
+    .navbar-nav.ml-auto {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-nav.ml-auto .nav-item {
+        margin-left: 10px; /* Adjust the spacing between buttons */
+    }
+
+    .navbar-nav.ml-auto .btn {
+        margin-left: 10px; /* Adjust the spacing between buttons */
+    }
+</style>
+<nav class="navbar navbar-expand bg-dark text-light">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light" href="{% url 'home' %}">Task Manager</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto flex align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link text-light" aria-current="page" href="{% url 'home' %}">Home</a>
+                    
+                </li>
+                
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link text-light" aria-current="page" href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link text-light" aria-current="page" href="{% url 'home' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" aria-current="page" href="{% url 'home' %}">Register</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,17 @@
+[33mcommit 8d08585a13725953611761efb9cfaade58c20a95[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: TamimMahmud <tmahmud.jnubd@gmail.com>
+Date:   Thu Dec 28 00:39:46 2023 +0600
+
+    database connect using postgrsesql and .env
+
+[33mcommit 476e73825b7c5d0284836d4ae63a6d51d79f7bb0[m
+Author: TamimMahmud <tmahmud.jnubd@gmail.com>
+Date:   Wed Dec 27 23:49:12 2023 +0600
+
+    environment variable .env
+
+[33mcommit 52c0733afb2d41ae333ef362bdcf6f42ebd0a7ff[m
+Author: TamimMahmud <tmahmud.jnubd@gmail.com>
+Date:   Wed Dec 27 23:40:29 2023 +0600
+
+    django projecct and app initialized
