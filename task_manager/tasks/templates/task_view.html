@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5 mb-5">
+    <h1 class="mt-4">Task Details</h1>
+
+    <div class="row row-cols-1 g-4 mb-5">
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ individual_task.title }}</h5>
+                    <p class="card-text"><strong>Description:</strong> {{ individual_task.description }}</p>
+                    {% if individual_task.image %}
+                        <img src="{{ individual_task.image.url }}" class="card-img-top w-25" alt="Task Image">
+                    {% endif %}
+                    <p class="card-text"><strong>Due Date:</strong> {{ individual_task.due_date }}</p>
+                    <p class="card-text"><strong>Priority:</strong> {{ individual_task.get_priority_display }}</p>
+                    <p class="card-text"><strong>Completeed?:</strong> {% if individual_task.is_complete %}Yes{% else %}No{% endif %}</p>
+                    <p class="card-text"><strong>Created At:</strong> {{ individual_task.creation_date }}</p>
+                    <p class="card-text"><strong>Last Updated:</strong> {{ individual_task.last_update_date }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    <a href= "{% url 'delete_task' individual_task.id %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Update</a>
+</div>
+
+{% endblock %}

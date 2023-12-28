@@ -50,4 +50,19 @@ def reg_user(request):
         form=SignUpForm()
         return render(request, 'register.html',{'form':form})
     return render(request, 'register.html',{'form':form})
-    
+def task_view(request,pk):
+    if request.user.is_authenticated:
+        individual_task=Tasks_list.objects.get(id=pk)
+        return render(request, 'task_view.html',{'individual_task':individual_task})
+    else:
+        messages.success(request, "You need to login....")
+        return redirect('home')
+def delete_task(request,pk):
+    if request.user.is_authenticated:
+        delete_record= Tasks_list.objects.get(id=pk)
+        delete_record.delete()
+        messages.success(request, "Task deleted Successfully....")
+        return redirect('home')
+    else:
+       messages.success(request, "Please login....")
+       return redirect('home')

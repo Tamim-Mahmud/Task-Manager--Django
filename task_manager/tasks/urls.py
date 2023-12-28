@@ -11,6 +11,8 @@ urlpatterns = [
     
     path('logout/',views.logout_user,name='logout'),
     path('register/',views.reg_user,name='register'),
+    path('tasks/<int:pk>',views.task_view,name="tasks"),
+    path('delete_task/<int:pk>',views.delete_task,name="delete_task"),
 ]
 
 if settings.DEBUG:
