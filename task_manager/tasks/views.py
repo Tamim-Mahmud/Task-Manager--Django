@@ -3,8 +3,16 @@ from django.contrib.auth import authenticate,login,logout
 
 from .forms import SignUpForm
 from django.contrib import messages
+from rest_framework import  viewsets
+from .serializer import TaskSerializer
+
+from .models import Tasks_list
 
 # Create your views here.
+class TaskApiView(viewsets.ModelViewSet):
+    serializer_class = TaskSerializer
+    queryset = Tasks_list.objects.all()
+    
 
 def home(request):
     
