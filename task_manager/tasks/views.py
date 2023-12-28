@@ -5,7 +5,6 @@ from .forms import SignUpForm
 from django.contrib import messages
 from rest_framework import  viewsets
 from .serializer import TaskSerializer
-
 from .models import Tasks_list
 
 # Create your views here.
@@ -15,8 +14,10 @@ class TaskApiView(viewsets.ModelViewSet):
     
 
 def home(request):
-    
+    tasks_list =Tasks_list.objects.all()
+    print(tasks_list[1].title)
     if request.method == "POST":
+        
         username = request.POST['username']
         password = request.POST['password']
         user =authenticate(request,username=username, password=password)
@@ -29,7 +30,7 @@ def home(request):
             messages.error(request,"Error Occured . Please Try again .....")
             return redirect('home')
     else:
-        return render(request, 'home.html',{})
+        return render(request, 'home.html',{'tasks_list':tasks_list})
 def logout_user(request):
     logout(request)
     return redirect('home')

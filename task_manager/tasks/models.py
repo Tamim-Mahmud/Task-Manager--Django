@@ -21,4 +21,4 @@ class Tasks_list(models.Model):
     last_update_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return (f"{self.title} {self.due_date}")
+        return (f"{self.title} {self.description}")

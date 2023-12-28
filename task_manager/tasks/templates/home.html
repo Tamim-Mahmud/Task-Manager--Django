@@ -1,51 +1,73 @@
-{% extends 'base.html' %} {% block content %}
-
-{% if user.is_authenticated %}
-
-<h2>Authentic user</h2>
+{% extends 'base.html' %} {% block content %} {% if user.is_authenticated %}
 
 
- {% else %}
-<form action="{% url 'home' %}" method="POST" class="mb-5">
-  {%csrf_token %}
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header text-center">
-            <h4>Login</h4>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label for="username">Username:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="username"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="password">Password:</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  name="password"
-                  required
-                />
-              </div>
-              <button type="submit" class="btn btn-primary btn-block mt-3">
-                Login
-              </button>
-            </form>
+<div class="container mt-3">
+  <h1>Authentic user : Showing Tasks</h1>
+
+  {% if tasks_list %}
+<div class="container mt-5">
+  {% for task in tasks_list %}
+  <div class="card w-75 mx-auto my-3">
+    <div class="d-flex gap-5 p-2 justify-content-center align-items-center">
+      <div class="">
+        <img src="{{ task.image.url }}" style="width:400px; " class="" alt="Task Image">
+      </div>
+      <div class="">
+          <h5 class="card-title">{{ task.title }}</h5>
+          <p class="card-text">{{ task.description }}</p>
+          <p class="card-text"><small class="text-muted">Due Date: {{ task.due_date }}</small></p>
+          <p class="card-text"><small class="text-muted">Priority: {{ task.get_priority_display }}</small></p>
+          <p class="card-text"><small class="text-muted">Created: {{ task.creation_date }}</small></p>
+          <p class="card-text"><small class="text-muted">Last Updated: {{ task.last_update_date }}</small></p>
+          <a href="#" class="btn btn-primary">View Details</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+  {% else %}
+  <form action="{% url 'home' %}" method="POST" class="mb-5">
+    {%csrf_token %}
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header text-center">
+              <h4>Login</h4>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <label for="username">Username:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password">Password:</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mt-3">
+                  Login
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</form>
-{% endif %}
+  </form>
+  {% endif %}
 </div>
 
 {% endblock %}
