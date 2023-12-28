@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login,logout
-
-from .forms import SignUpForm
+from .forms import SignUpForm, AddTaskForm
 from django.contrib import messages
 from rest_framework import  viewsets
 from .serializer import TaskSerializer
 from .models import Tasks_list
+
 
 # Create your views here.
 class TaskApiView(viewsets.ModelViewSet):
@@ -66,3 +66,31 @@ def delete_task(request,pk):
     else:
        messages.success(request, "Please login....")
        return redirect('home')
+def update_task(request,pk):
+    if request.user.is_authenticated:
+        instance = Tasks_list.objects.get(id=pk)
+        form = AddTaskForm(request.POST or None, instance=instance)
+        if request.method == 'POST' or None:
+            if form.is_valid():
+                form.save()
+                messages.success(request,"Task Has been updated .....")
+                return redirect('home')
+        return render(request,'update_task.html',{'form':form})
+    else:
+        messages.success(request,'Please login first ....')
+        return redirect('home')
+    
+def add_task(request):
+    form =AddTaskForm(request.POST , request.FILES)
+    if request.user.is_authenticated:
+        if request.method =="POST":
+            if form.is_valid():
+                task=form.save(commit=False)
+                task.user = request.user
+                task.save()
+                messages.success(request,"Task Saved")
+                return redirect('home')
+        return render(request,'add_task.html',{'form':form})
+    else:
+        messages.success(request,"Log in first......")
+        return redirect('home')

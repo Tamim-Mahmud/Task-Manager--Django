@@ -4,7 +4,7 @@
   <h1>Authentic user : Showing Tasks</h1>
 
   <div class="block d-flex justify-content-center align-items-center mt-5">
-    <a href="#" class="btn btn-primary text-center">Add New Task</a>
+    <a href="{% url 'add_task' %}" class="btn btn-primary text-center">Add New Task</a>
   </div>
 
   {% if tasks_list %}
