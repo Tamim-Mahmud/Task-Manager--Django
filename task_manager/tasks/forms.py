@@ -36,9 +36,9 @@ from django import forms
 from .models import Tasks_list
 
 PRIORITY_CHOICES = [
-        (1, 'Low'),
+        (3, 'Low'),
         (2, 'Medium'),
-        (3, 'High'),
+        (1, 'High'),
     ]
 
 class AddTaskForm(forms.ModelForm):

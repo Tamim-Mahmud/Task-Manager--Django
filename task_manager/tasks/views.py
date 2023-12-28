@@ -14,8 +14,8 @@ class TaskApiView(viewsets.ModelViewSet):
     
 
 def home(request):
-    tasks_list =Tasks_list.objects.all()
-    print(tasks_list[1].title)
+    tasks_list =Tasks_list.objects.all().order_by('priority')
+    print(tasks_list[0].title)
     if request.method == "POST":
         
         username = request.POST['username']
@@ -94,3 +94,14 @@ def add_task(request):
     else:
         messages.success(request,"Log in first......")
         return redirect('home')
+
+def mark_complete(request,pk):
+    if request.user.is_authenticated:
+        object= Tasks_list.objects.get(id=pk)
+        object.is_complete=True
+        object.save()
+        messages.success(request, "Congratulations you've completed the task successfully....")
+        return redirect('home')
+    else:
+       messages.success(request, "Please login....")
+       return redirect('home')
