@@ -105,3 +105,9 @@ def mark_complete(request,pk):
     else:
        messages.success(request, "Please login....")
        return redirect('home')
+def search_by_name(request):
+    if request.method == 'POST':
+        searched=request.POST['searched']
+        print(searched)
+        result =Tasks_list.objects.filter(title__icontains=searched)
+        return render (request,'home.html' ,{'tasks_list': result})

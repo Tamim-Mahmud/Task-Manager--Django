@@ -3,10 +3,16 @@
 <div class="container-lg mt-3">
   <h1>Authentic user : Showing Tasks</h1>
 
-  <div class="block d-flex justify-content-center align-items-center mt-5">
-    <a href="{% url 'add_task' %}" class="btn btn-primary text-center"
+  <div class="block d-flex justify-content-between align-items-center mt-5 gap-5">
+     <a href="{% url 'add_task' %}" class="btn btn-primary text-center"
       >Add New Task</a
     >
+    
+    <form class="d-flex" method="POST" action="{%  url 'search_by_name' %}">
+      {% csrf_token %}
+      <input class="form-control me-2" type="search" placeholder="Search task by name" name="searched" aria-label="Search">
+      <button class="btn btn-secondary" type="submit">Search</button>
+    </form>
   </div>
 
   {% if tasks_list %}

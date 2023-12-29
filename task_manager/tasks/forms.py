@@ -76,6 +76,9 @@ class AddTaskForm(forms.ModelForm):
         model = Tasks_list
         exclude = ('user', 'creation_date', 'last_update_date')
         
+class SearchForm(forms.Form):
+    name = forms.CharField(label='Search by Name', max_length=100)
+        
 
         
     

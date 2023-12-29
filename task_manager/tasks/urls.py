@@ -18,6 +18,7 @@ urlpatterns = [
     path('update_task/<int:pk>',views.update_task,name="update_task"),
     path('add_task',views.add_task,name="add_task"),
     path('mark_complete<int:pk>',views.mark_complete,name="mark_complete"),
+    path('search_by_name', views.search_by_name, name='search_by_name'),
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
