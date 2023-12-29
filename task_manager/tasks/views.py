@@ -14,7 +14,7 @@ class TaskApiView(viewsets.ModelViewSet):
     
 def get_objects_for_logged_in_user(request):
     if request.user.is_authenticated:
-        user_objects = Tasks_list.objects.filter(user=request.user)
+        user_objects = Tasks_list.objects.filter(user=request.user).order_by('priority')
         return user_objects
 
 def home(request):

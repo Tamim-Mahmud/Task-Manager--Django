@@ -1,6 +1,17 @@
-Python 3.11.2
-pip install psycopg2-binary
-pip install psycopg2
-pillow
-djangorestframework
-django-cors-headers
+annotated-types==0.6.0
+asgiref==3.7.2
+beautifulsoup4==4.12.2
+Django==5.0
+django-datetimepicker==3.14
+djangorestframework==3.14.0
+Pillow==10.1.0
+psycopg2==2.9.9
+psycopg2-binary==2.9.9
+pydantic==2.5.3
+pydantic_core==2.14.6
+python-dotenv==1.0.0
+pytz==2023.3.post1
+soupsieve==2.5
+sqlparse==0.4.4
+typing_extensions==4.9.0
+tzdata==2023.3
