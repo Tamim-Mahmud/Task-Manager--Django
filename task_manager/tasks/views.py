@@ -12,10 +12,14 @@ class TaskApiView(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     queryset = Tasks_list.objects.all()
     
+def get_objects_for_logged_in_user(request):
+    if request.user.is_authenticated:
+        user_objects = Tasks_list.objects.filter(user=request.user)
+        return user_objects
 
 def home(request):
-    tasks_list =Tasks_list.objects.all().order_by('priority')
-    print(tasks_list[0].title)
+    
+   
     if request.method == "POST":
         
         username = request.POST['username']
@@ -24,12 +28,14 @@ def home(request):
 
         if user is not None:
             login(request,user)
+            # tasks_list=Tasks_list.objects.filter(user_id=request.user)
             messages.success(request,"You Have Loged In Successfully .....")
             return redirect('home')
         else:
             messages.error(request,"Error Occured . Please Try again .....")
             return redirect('home')
     else:
+        tasks_list=get_objects_for_logged_in_user(request)
         return render(request, 'home.html',{'tasks_list':tasks_list})
 def logout_user(request):
     logout(request)
@@ -109,5 +115,6 @@ def search_by_name(request):
     if request.method == 'POST':
         searched=request.POST['searched']
         print(searched)
-        result =Tasks_list.objects.filter(title__icontains=searched)
+        result =get_objects_for_logged_in_user(request).filter(title__icontains=searched)
+        
         return render (request,'home.html' ,{'tasks_list': result})
