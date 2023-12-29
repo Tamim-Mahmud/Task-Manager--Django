@@ -118,3 +118,7 @@ def search_by_name(request):
         result =get_objects_for_logged_in_user(request).filter(title__icontains=searched)
         
         return render (request,'home.html' ,{'tasks_list': result})
+def sort_by_due_date(request):
+    if request.user.is_authenticated:
+        user_objects = Tasks_list.objects.filter(user=request.user).order_by('due_date')
+        return render (request,'home.html' ,{'tasks_list': user_objects})

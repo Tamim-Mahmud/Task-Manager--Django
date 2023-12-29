@@ -19,6 +19,7 @@ urlpatterns = [
     path('add_task',views.add_task,name="add_task"),
     path('mark_complete<int:pk>',views.mark_complete,name="mark_complete"),
     path('search_by_name', views.search_by_name, name='search_by_name'),
+    path('sort_by_due_date', views.sort_by_due_date, name='sort_by_due_date'),
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
