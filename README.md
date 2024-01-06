@@ -71,6 +71,8 @@ This project is a task management web application developed using Django. The ap
    Visit `http://127.0.0.1:8000/api/`
 
   Visit `http://localhost:8000/api/all_task/`
+    
+  Visit `http://localhost:8000/api/all_task/34/`
 
     Follow the prompts to create a superuser account.
 
